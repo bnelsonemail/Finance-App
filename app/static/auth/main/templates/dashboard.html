@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - BudgetApp{% endblock %}
+
+{% block content %}
+    <h2>Dashboard</h2>
+    <p>Welcome to your dashboard, {{ session['user']['name'] }}!</p>
+    <p>Here you can manage your budgets, view your spending, and set financial goals.</p>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Home - BudgetApp{% endblock %}
+
+{% block content %}
+    <h2>Welcome to BudgetApp</h2>
+    <p>Your personal finance manager.</p>
+    {% if session.get('user') %}
+        <p>Hello, {{ session['user']['name'] }}! Explore your dashboard <a href="{{ url_for('main.dashboard') }}">here</a>.</p>
+    {% else %}
+        <p><a href="{{ url_for('auth.login') }}">Login</a> to start managing your finances.</p>
+    {% endif %}
+{% endblock %}

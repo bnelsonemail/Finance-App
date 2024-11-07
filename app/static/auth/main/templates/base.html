@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}BudgetApp{% endblock %}</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="{% block meta_description %}Manage your finances effectively with BudgetApp, a comprehensive personal finance manager.{% endblock %}">
+    <meta name="keywords" content="BudgetApp, finance, budget management, personal finance, savings">
+    <meta name="author" content="Your Name or BudgetApp">
+    <link rel="canonical" href="{{ request.url }}" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{% block og_title %}BudgetApp - Manage Your Finances{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}BudgetApp helps you stay on top of your finances and achieve your financial goals.{% endblock %}">
+    <meta property="og:url" content="{{ request.url }}">
+    <meta property="og:image" content="{% block og_image %}{{ url_for('static', filename='images/preview.jpg') }}{% endblock %}">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}BudgetApp - Manage Your Finances{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}BudgetApp helps you stay on top of your finances and achieve your financial goals.{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{{ url_for('static', filename='images/preview.jpg') }}{% endblock %}">
+
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+    <!-- Header -->
+    <header class="bg-blue-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold"><a href="{{ url_for('main.index') }}">BudgetApp</a></h1>
+            <nav>
+                <ul class="flex space-x-4">
+                    {% if session.get('user') %}
+                        <li><a href="{{ url_for('main.dashboard') }}" class="hover:underline">Dashboard</a></li>
+                        <li><a href="{{ url_for('auth.logout') }}" class="hover:underline">Logout</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('auth.login') }}" class="hover:underline">Login</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto my-8">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-600 text-white p-4 mt-8">
+        <div class="container mx-auto text-center">
+            <p>&copy; {{ year|default(2024) }} BudgetApp. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+

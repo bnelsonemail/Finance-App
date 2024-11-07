@@ -30,6 +30,16 @@ def create_app(config_class=Config):
     db.init_app(app)
     migrate.init_app(app, db)
 
+oauth = OAuth(app)
+auth0 = oauth.register(
+    'auth0',
+    client_id=os.getenv('AUTH0_CLIENT_ID'),
+    client_secret=os.getenv('AUTH0_CLIENT_SECRET'),
+    client_kwargs={
+        'scope': 'openid profile email',
+    },
+    server_metadata_url=f'https://{os.getenv("AUTH0_DOMAIN")}/.well-known/openid-configuration'
+)
     # Register blueprints
     from app.auth.routes import auth_bp
     from app.main.routes import main_bp

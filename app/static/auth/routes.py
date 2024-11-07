@@ -4,6 +4,8 @@ from flask import Blueprint, redirect, url_for, session, jsonify
 from authlib.integrations.flask_client import OAuth
 from app import db
 from app.models import User
+from finance_app import config
+
 
 auth_bp = Blueprint('auth', __name__)
 oauth = OAuth()
@@ -61,3 +63,13 @@ def logout():
         f'https://{Config.AUTH0_DOMAIN}/v2/logout?client_id='
         f'{Config.AUTH0_CLIENT_ID}&returnTo={url_for("auth.login",_external=True)}'
     )
+
+
+# Decorator to protect routes
+def requires_auth(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        if 'user' not in session:
+            return redirect(url_for('auth.login'))
+        return f(*args, **kwargs)
+    return decorated
