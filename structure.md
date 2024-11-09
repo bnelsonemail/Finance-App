@@ -27,10 +27,15 @@ finance_app/
 │   │   │   └── login.html
 │   │   ├── budget/
 │   │   │   └── budget_overview.html
+│   │   │   ├── budget_overview.html   # Displays a list of all budget entries
+│   │   │   ├── add_budget.html        # Form for adding a new budget entry
+│   │   │   └── edit_budget.html       # Form for editing an existing budget entry
 │   │   └── debt/
 │   │       └── debt_calculator.html
+│   │       ├── debt_overview.html   # Displays a list of all debt entries
+│   │       ├── add_debt.html        # Form for adding a new debt entry
+│   │       └── debt_payoff.html     # Displays the debt payoff schedule for a specific debt
 │   ├── static/
-│       ├── css/
 │       ├── js/
 │       └── images/
 ├── migrations/
