@@ -1,6 +1,7 @@
-BudgetApp/
-│
-├── .env                     # Environment variables
+finance_app/
+├── .env
+├── config.py
+├── run.py
 ├── app/
 │   ├── __init__.py
 │   ├── models.py
@@ -10,18 +11,28 @@ BudgetApp/
 │   ├── main/
 │   │   ├── __init__.py
 │   │   ├── routes.py
+│   ├── budget/                     # New budget blueprint
+│   │   ├── __init__.py
+│   │   ├── routes.py
+│   │   └── services.py             # Service layer for budget logic
+│   ├── debt/                       # New debt blueprint
+│   │   ├── __init__.py
+│   │   ├── routes.py
+│   │   └── calculator.py           # Debt payoff calculation logic
 │   ├── templates/
-│   │   └── layout.html
+│   │   ├── base.html
+│   │   ├── layout.html
+│   │   ├── dashboard.html
+│   │   ├── auth/
+│   │   │   └── login.html
+│   │   ├── budget/
+│   │   │   └── budget_overview.html
+│   │   └── debt/
+│   │       └── debt_calculator.html
 │   ├── static/
-├── config.py
+│       ├── css/
+│       ├── js/
+│       └── images/
 ├── migrations/
-    ├── README
-    ├── env.py
-    ├── alembic.ini
-    ├── script.py.mako
-    └── versions/
-        ├── 3b1d3b98ef4a_add_users_table.py
-        ├── 4c2d3c98cf5b_add_budgets_table.py
-        └── 6e4f8d90df2c_add_debt_table.py
-├── run.py
-└── venv/                    # Virtual environment
+└── venv/
+
